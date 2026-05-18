@@ -75,114 +75,81 @@
         h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
         .sub-text { color: #94a3b8; font-size: 14px; max-width: 450px; margin: 0 auto; line-height: 1.5; }
 
-        /* Real-time Interactive Inbox Box Section */
-        .inbox-wrapper {
-            max-width: 500px;
-            margin: 25px auto;
+        /* Gallery Grid Layout */
+        .gallery-heading {
+            max-width: 1000px;
+            margin: 40px auto 15px;
             padding: 0 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
         }
 
-        .inbox-card {
-            background: rgba(255, 255, 255, 0.04);
+        .gallery-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        .video-card {
+            background: var(--glass);
+            border-radius: 16px;
+            overflow: hidden;
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s, border-color 0.3s;
+            color: white;
+            position: relative;
+            display: block;
+            cursor: pointer;
         }
 
-        .inbox-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 10px;
+        .video-card:hover {
+            transform: scale(1.04);
+            border-color: var(--primary);
+        }
+
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 9/16;
+            background: #111827;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+        }
+        
+        .thumb-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0.8; 
         }
 
-        .inbox-p {
-            font-size: 13px;
-            color: #94a3b8;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 8px;
-            background: rgba(0,0,0,0.3);
-            padding: 6px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .input-group input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 10px 15px;
-            color: white;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .input-group input::placeholder { color: #64748b; }
-
-        .submit-btn {
+        .play-btn {
+            position: absolute;
             background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 13px;
-            cursor: pointer;
-            transition: background 0.2s;
+            width: 46px; height: 46px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.5);
+            z-index: 2;
         }
 
-        .submit-btn:hover { background: var(--primary-hover); }
-
-        .status-msg {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 13.5px;
-            line-height: 1.5;
-            display: none;
-            text-align: center;
+        .play-triangle {
+            width: 0; height: 0;
+            border-top: 9px solid transparent;
+            border-left: 15px solid white;
+            border-bottom: 9px solid transparent;
+            margin-left: 5px;
         }
 
-        /* Block-Level Link Buttons */
-        .cta-container {
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .main-link-btn {
-            display: block !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-            background: linear-gradient(135deg, #ff0055 0%, #ff4d6d 100%) !important;
-            color: #ffffff !important;
-            text-decoration: none !important;
-            text-align: center !important;
-            padding: 18px 20px !important;
-            border-radius: 50px !important;
-            font-size: 16px !important;
-            font-weight: 800 !important;
-            letter-spacing: 0.5px !important;
-            box-shadow: 0 8px 25px rgba(255, 0, 85, 0.4) !important;
-            transition: transform 0.2s, opacity 0.2s !important;
-            margin: 15px 0 !important;
-            cursor: pointer;
-        }
-
-        .main-link-btn:hover {
-            transform: translateY(-1px);
-            opacity: 0.95;
+        .video-info {
+            padding: 10px; font-size: 12px; text-align: center;
+            background: rgba(0, 0, 0, 0.75); font-weight: 600;
+            position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         /* 👑 VIP INTERACTIVE LIVE CHAT WIDGET 👑 */
@@ -257,7 +224,6 @@
         .f-user { font-weight: bold; margin-right: 4px; }
         .f-text { color: #e2e8f0; }
 
-        /* Host Message Styling */
         .host-msg {
             background: rgba(255, 0, 85, 0.15);
             border-left: 3px solid var(--primary);
@@ -272,7 +238,6 @@
             margin-left: 4px; vertical-align: middle;
         }
 
-        /* User (Traffic) Message Styling */
         .my-msg {
             text-align: right;
             background: rgba(255, 255, 255, 0.08);
@@ -338,83 +303,6 @@
             0% { transform: scale(0.9); opacity: 1; }
             50% { transform: scale(1.2); opacity: 0.4; }
             100% { transform: scale(0.9); opacity: 1; }
-        }
-
-        /* Gallery Grid Layout */
-        .gallery-heading {
-            max-width: 1000px;
-            margin: 40px auto 15px;
-            padding: 0 20px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #64748b;
-        }
-
-        .gallery-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
-        }
-
-        .video-card {
-            background: var(--glass);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: transform 0.3s, border-color 0.3s;
-            color: white;
-            position: relative;
-            display: block;
-            cursor: pointer;
-        }
-
-        .video-card:hover {
-            transform: scale(1.04);
-            border-color: var(--primary);
-        }
-
-        .thumbnail {
-            width: 100%;
-            aspect-ratio: 9/16;
-            background: #111827;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .thumb-img {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; opacity: 0.7; 
-        }
-
-        .play-btn {
-            position: absolute;
-            background: var(--primary);
-            width: 46px; height: 46px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.5);
-            z-index: 2;
-        }
-
-        .play-triangle {
-            width: 0; height: 0;
-            border-top: 9px solid transparent;
-            border-left: 15px solid white;
-            border-bottom: 9px solid transparent;
-            margin-left: 5px;
-        }
-
-        .video-info {
-            padding: 10px; font-size: 12px; text-align: center;
-            background: rgba(0, 0, 0, 0.75); font-weight: 600;
-            position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         /* 🚨 ANTI-ESCAPE MODAL STYLES 🚨 */
@@ -516,6 +404,30 @@
             letter-spacing: 1px;
         }
 
+        .main-link-btn {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #ff0055 0%, #ff4d6d 100%);
+            color: #ffffff;
+            text-decoration: none;
+            text-align: center;
+            padding: 18px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 25px rgba(255, 0, 85, 0.4);
+            transition: transform 0.2s, opacity 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .main-link-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.95;
+        }
+
         /* Loading Overlay Style */
         #loadingOverlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -568,16 +480,4 @@
 
     <div class="gallery-heading">📸 My Private Album Preview (18 Clips):</div>
     
-    <div class="gallery-container">
-        <script>
-            const images = [
-                "G3UZgO_XMAAzE6N.jpg", "GoWoZl9X0AA1I6V.jpg", "Gv2LKn_XwAAsWou.jpg", 
-                "HAwdaxsW0AA1AU1.jpg", "HBuOij0WoAAfrI3.jpg", "HE7LupIXEAA2xnS.jpg", 
-                "HG2xUfkX0AAZEu5.jpg", "HGTqY9UX0AAUZlR.jpg", "HGwpfY6XwAAYJZl.jpg", 
-                "HHN_VvQXsAAyPas.jpg", "HIdka0EWIAAYMTj.jpg"
-            ];
-            for (let i = 1; i <= 18; i++) {
-                let src = i <= 11 
-                    ? `https://github.com/mizan000321-ops/newv/blob/main/${images[i-1]}?raw=true`
-                    : `https://drive.google.com/thumbnail?id=` + [
-                        "1vRivbiFDOWdoBdV61
+    <div class="gallery-container" id="mainGallery"></div>
