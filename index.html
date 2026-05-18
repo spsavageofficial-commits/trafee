@@ -14,7 +14,7 @@
             --border: rgba(255, 0, 85, 0.2);
             --text-muted: #94a3b8;
             --neon-blue: #00f0ff;
-            --neon-green: #39ff14;
+            --neon-green: #22c55e;
         }
 
         * {
@@ -58,7 +58,7 @@
             position: absolute;
             bottom: 3px;
             right: 3px;
-            background: #22c55e;
+            background: var(--neon-green);
             padding: 2px 8px;
             border-radius: 10px;
             font-size: 10px;
@@ -133,7 +133,7 @@
             margin-bottom: 20px;
         }
 
-        /* NEXT LEVEL: Interactive Options Grid */
+        /* Options Grid */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -155,7 +155,6 @@
             align-items: center;
             gap: 8px;
             transition: all 0.2s ease;
-            position: relative;
         }
 
         .feature-btn:hover {
@@ -164,22 +163,9 @@
             transform: translateY(-2px);
         }
 
-        .feature-icon {
-            font-size: 22px;
-        }
-
-        .lock-tag {
-            font-size: 10px;
-            color: var(--text-muted);
-            background: rgba(0,0,0,0.4);
-            padding: 2px 6px;
-            border-radius: 8px;
-            font-weight: 500;
-        }
-
-        .feature-btn:hover .lock-tag {
-            color: var(--primary);
-        }
+        .feature-icon { font-size: 22px; }
+        .lock-tag { font-size: 10px; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 8px; font-weight: 500; }
+        .feature-btn:hover .lock-tag { color: var(--primary); }
 
         .main-btn {
             display: block;
@@ -196,7 +182,6 @@
             box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
             transition: transform 0.2s;
             text-align: center;
-            letter-spacing: 0.5px;
         }
 
         .main-btn:hover { transform: translateY(-2px); }
@@ -221,182 +206,225 @@
             gap: 5px;
         }
 
-        .activity-header::before {
-            content: ''; display: inline-block; width: 6px; height: 6px; background: #ef4444; border-radius: 50%;
-        }
-
-        .activity-log {
-            font-size: 12.5px;
-            line-height: 1.5;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .view-gallery-link {
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 12px;
-            color: var(--text-muted);
-            text-decoration: underline;
-            cursor: pointer;
-        }
+        .activity-header::before { content: ''; display: inline-block; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; }
+        .activity-log { font-size: 12.5px; line-height: 1.5; display: flex; flex-direction: column; gap: 8px; }
+        .view-gallery-link { display: inline-block; margin-top: 15px; font-size: 12px; color: var(--text-muted); text-decoration: underline; cursor: pointer; }
 
         /* Gallery Grid Area */
-        .gallery-heading {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #64748b;
-            margin-bottom: 10px;
-            margin-top: 10px;
-        }
-
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 12px;
-        }
-
-        .video-card {
-            background: rgba(255,255,255,0.03);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
+        .gallery-heading { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 10px; margin-top: 10px; }
+        .gallery-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+        .video-card { background: rgba(255,255,255,0.03); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: transform 0.2s; }
         .video-card:hover { transform: scale(1.03); border-color: var(--primary); }
-
-        .thumbnail {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 9/16;
-            background: #1e293b;
-        }
-
-        .thumb-img {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.9;
-        }
-
-        .play-btn {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: var(--primary); width: 36px; height: 36px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .play-triangle {
-            width: 0; height: 0; border-top: 7px solid transparent; border-left: 11px solid white; border-bottom: 7px solid transparent; margin-left: 3px;
-        }
-
+        .thumbnail { position: relative; width: 100%; aspect-ratio: 9/16; background: #1e293b; }
+        .thumb-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+        .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--primary); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .play-triangle { width: 0; height: 0; border-top: 7px solid transparent; border-left: 11px solid white; border-bottom: 7px solid transparent; margin-left: 3px; }
         .video-info { padding: 8px; font-size: 11px; text-align: center; background: rgba(0,0,0,0.6); }
 
         /* Right Sidebar Live Chat Layout */
-        .live-chat-box {
-            background: #0b111e;
-            border: 1px solid var(--primary);
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            overflow: hidden;
+        .live-chat-box { background: #0b111e; border: 1px solid var(--primary); border-radius: 16px; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; }
+        .chat-header { background: var(--card-bg); padding: 12px 15px; font-size: 13px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .live-indicator { color: #ef4444; display: flex; align-items: center; gap: 5px; text-transform: uppercase; }
+        .live-indicator::before { content: ''; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; animation: pulse 1s infinite; }
+        .chat-feed { height: 380px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; background: #0b111e; }
+        .chat-feed::-webkit-scrollbar { width: 4px; }
+        .chat-feed::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .f-msg { font-size: 13px; line-height: 1.4; word-wrap: break-word; color: #cbd5e1; }
+        .f-user { font-weight: bold; margin-right: 5px; }
+        .my-msg { text-align: right; background: rgba(255, 255, 255, 0.08); padding: 8px 12px; border-radius: 12px 12px 0 12px; align-self: flex-end; max-width: 85%; color: #fff; }
+        .host-msg { background: rgba(255, 0, 85, 0.12); border-left: 3px solid var(--primary); padding: 6px 10px; border-radius: 0 8px 8px 0; }
+        .host-name { color: var(--primary); font-weight: 900; }
+        .host-badge { background: var(--primary); font-size: 8px; padding: 1px 4px; border-radius: 3px; margin-left: 3px; color: #fff; }
+        .c-1 { color: #38bdf8; } .c-2 { color: #a78bfa; } .c-3 { color: #34d399; } .c-4 { color: #fbbf24; }
+        .chat-input-area { display: flex; padding: 10px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.05); }
+        .chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px 15px; border-radius: 20px; font-size: 13px; outline: none; }
+        .chat-send-btn { background: var(--primary); border: none; color: white; width: 36px; height: 36px; border-radius: 50%; margin-left: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .typing-indicator { font-size: 11px; color: var(--text-muted); font-style: italic; padding: 0 15px 8px; display: none; background: #0b111e; }
+
+        /* NEXT LEVEL: ADVANCED LIVE REVIEW SECTION (BOTTOM WIDGET) */
+        .review-wrapper {
+            max-width: 1150px;
+            margin: 40px auto 20px;
+            padding: 0 20px;
         }
 
-        .chat-header {
+        .review-header-bar {
             background: var(--card-bg);
-            padding: 12px 15px;
-            font-size: 13px;
-            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            justify-content: space-between;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
 
-        .live-indicator {
-            color: #ef4444;
+        .rating-stars {
+            color: #facc15;
+            font-size: 20px;
+            font-weight: bold;
             display: flex;
             align-items: center;
             gap: 5px;
-            text-transform: uppercase;
         }
 
-        .live-indicator::before {
-            content: ''; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; animation: pulse 1s infinite;
+        .rating-count {
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
-        .chat-feed {
-            height: 380px;
-            overflow-y: auto;
-            padding: 15px;
+        /* Live Scrolling Streaming Proof Showcase */
+        .proof-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .proof-box {
+            background: #000;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 16/9;
+            border: 1px solid rgba(255,0,85,0.2);
+        }
+
+        .proof-stream {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.65;
+            filter: blur(0.5px);
+            animation: streamPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes streamPulse {
+            0%, 100% { opacity: 0.55; transform: scale(1); }
+            50% { opacity: 0.75; transform: scale(1.02); }
+        }
+
+        .live-overlay-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(239, 68, 68, 0.85);
+            color: white;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 3px 6px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .live-overlay-tag::before { content: ''; width: 4px; height: 4px; background: white; border-radius: 50%; }
+
+        .user-overlay-tag {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        /* 10 Verified Live Review Cards Layout */
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .review-card {
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            scroll-behavior: smooth;
-            background: #0b111e;
+            gap: 10px;
+            transition: all 0.2s ease;
         }
 
-        .chat-feed::-webkit-scrollbar { width: 4px; }
-        .chat-feed::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
-
-        .f-msg { font-size: 13px; line-height: 1.4; word-wrap: break-word; color: #cbd5e1; }
-        .f-user { font-weight: bold; margin-right: 5px; }
-        .my-msg {
-            text-align: right; background: rgba(255, 255, 255, 0.08);
-            padding: 8px 12px; border-radius: 12px 12px 0 12px; align-self: flex-end; max-width: 85%; color: #fff;
+        .review-card:hover {
+            border-color: rgba(255,0,85,0.3);
+            background: rgba(17, 24, 39, 0.9);
         }
 
-        .host-msg {
-            background: rgba(255, 0, 85, 0.12); border-left: 3px solid var(--primary);
-            padding: 6px 10px; border-radius: 0 8px 8px 0;
+        .rev-user-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .host-name { color: var(--primary); font-weight: 900; }
-        .host-badge { background: var(--primary); font-size: 8px; padding: 1px 4px; border-radius: 3px; margin-left: 3px; color: #fff; }
-
-        .c-1 { color: #38bdf8; } .c-2 { color: #a78bfa; } .c-3 { color: #34d399; } .c-4 { color: #fbbf24; }
-
-        .chat-input-area {
-            display: flex; padding: 10px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.05);
+        .rev-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .chat-input {
-            flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: white; padding: 10px 15px; border-radius: 20px; font-size: 13px; outline: none;
+        .rev-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 1.5px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            color: var(--primary);
         }
 
-        .chat-send-btn {
-            background: var(--primary); border: none; color: white; width: 36px; height: 36px;
-            border-radius: 50%; margin-left: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        .rev-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #f8fafc;
         }
 
-        .typing-indicator { font-size: 11px; color: var(--text-muted); font-style: italic; padding: 0 15px 8px; display: none; background: #0b111e; }
+        .rev-badge {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--neon-green);
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .rev-stars {
+            color: #facc15;
+            font-size: 12px;
+        }
+
+        .rev-text {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .rev-time {
+            font-size: 11px;
+            color: var(--text-muted);
+            align-self: flex-end;
+        }
 
         /* ANTI-ESCAPE POPUP MODAL */
-        .escape-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(9, 13, 22, 0.97); backdrop-filter: blur(5px);
-            display: none; align-items: center; justify-content: center; z-index: 99999; padding: 20px;
-        }
-
-        .escape-box {
-            background: var(--card-bg); border: 3px solid var(--primary); border-radius: 24px;
-            max-width: 420px; width: 100%; padding: 30px 20px; text-align: center;
-            box-shadow: 0 20px 50px rgba(255, 0, 85, 0.3);
-        }
-
+        .escape-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(9, 13, 22, 0.97); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 99999; padding: 20px; }
+        .escape-box { background: var(--card-bg); border: 3px solid var(--primary); border-radius: 24px; max-width: 420px; width: 100%; padding: 30px 20px; text-align: center; box-shadow: 0 20px 50px rgba(255, 0, 85, 0.3); }
         .siren-img { width: 55px; margin-bottom: 12px; }
         .escape-title { font-size: 24px; font-weight: 900; color: var(--primary); margin-bottom: 12px; }
         .timer-container { border: 2px dashed rgba(255, 0, 85, 0.3); border-radius: 10px; padding: 10px; margin: 15px 0 20px; }
         .timer-clock { font-size: 20px; font-weight: 800; color: var(--primary); }
 
-        #loadingOverlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--dark-bg); z-index: 999999; align-items: center; justify-content: center; flex-direction: column;
-        }
-
+        #loadingOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark-bg); z-index: 999999; align-items: center; justify-content: center; flex-direction: column; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* Mobile Responsiveness */
@@ -404,6 +432,8 @@
             .main-layout { flex-direction: column; }
             .right-sidebar { width: 100%; }
             .gallery-container { grid-template-columns: repeat(2, 1fr); }
+            .review-grid { grid-template-columns: 1fr; }
+            .proof-showcase { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -440,7 +470,7 @@
                         <span class="lock-tag">🔒 Unlock Free</span>
                     </div>
                     <div class="feature-btn" onclick="forceRedirect(event, 'cam')">
-                        <span class="feature-icon">👁️‍🗨️</span>
+                        <span class="feature-icon">👁️‍عون</span>
                         <span>HD Cam-Share Room</span>
                         <span class="lock-tag">🔒 Unlock Free</span>
                     </div>
@@ -660,6 +690,170 @@
 
     </div>
 
+    <div class="review-wrapper">
+        <div class="review-header-bar">
+            <div>
+                <div class="rating-stars">⭐⭐⭐⭐⭐ 4.9/5.0</div>
+                <div class="rating-count">Based on 154 Verified Member Responses</div>
+            </div>
+            <div style="text-align: right;">
+                <span class="live-indicator" style="font-size:11px; font-weight:bold;">LIVE REVIEWS FEED</span>
+            </div>
+        </div>
+
+        <div class="proof-showcase">
+            <div class="proof-box" onclick="forceRedirect(event, 'live_stream')">
+                <div class="live-overlay-tag">LIVE STREAM #04</div>
+                <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/G3UZgO_XMAAzE6N.jpg" class="proof-stream">
+                <div class="user-overlay-tag">Connected: Active Room</div>
+            </div>
+            <div class="proof-box" onclick="forceRedirect(event, 'live_stream')">
+                <div class="live-overlay-tag">LIVE STREAM #09</div>
+                <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/GoWoZl9X0AA1I6V.jpg" class="proof-stream">
+                <div class="user-overlay-tag">Connected: 1-on-1 Cam</div>
+            </div>
+            <div class="proof-box" onclick="forceRedirect(event, 'live_stream')">
+                <div class="live-overlay-tag">LIVE STREAM #11</div>
+                <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/Gv2LKn_XwAAsWou.jpg" class="proof-stream">
+                <div class="user-overlay-tag">Connected: Private Audio</div>
+            </div>
+        </div>
+
+        <div class="review-grid">
+            
+            <div class="review-card">
+                <div class="rev-user-info">
+                    <div class="rev-profile">
+                        <div class="rev-avatar">JD</div>
+                        <span class="rev-name">John_D88</span>
+                    </div>
+                    <span class="rev-badge">✓ Verified User</span>
+                </div>
+                <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                <p class="rev-text">Man, this is incredible! I thought it would be a trap, but right after creating the free profile, the 1-on-1 private video stream started instantly. High quality audio too! 🔥</p>
+                <span class="rev-time">2 mins ago</span>
+            </div>
+
+            <div class="review-card">
+                <div class="rev-user-info">
+                    <div class="rev-profile">
+                        <div class="rev-avatar">M9</div>
+                        <span class="rev-name">Marco99</span>
+                    </div>
+                    <span class="rev-badge">✓ Verified User</span>
+                </div>
+                <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                <p class="rev-text">I just clicked the audio call button, made my network account and damn... her voice is so lovely. Highly recommend passing the secure check!</p>
+                <span class="rev-time">5 mins ago</span>
+            </div>
+
+            <div class="review-card">
+                <div class="rev-user-info">
+                    <div class="rev-profile">
+                        <div class="rev-avatar">AL</div>
+                        <span class="rev-name">Alex_Live</span>
+                    </div>
+                    <span class="rev-badge">✓ Verified User</span>
+                </div>
+                <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                <p class="rev-text">The private HD cam-share room is wild. The connection took about 30 seconds after verification. Worth every single action.</p>
+                <span class="rev-time">14 mins ago</span>
+            </div>
+
+            <div class="review-card">
+                <div class="rev-user-info">
+                    <div class="rev-profile">
+                        <div class="rev-avatar">KB</div>
+                        <span class="rev-name">Kevin_B</span>
+                    </div>
+                    <span class="rev-badge">✓ Verified User</span>
+                </div>
+                <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                <p class="rev-text">Super clear stream setup. Glad I found this active community today. Make sure to click the master unlock button to get all modes free.</p>
+                <span class="rev-time">28 mins ago</span>
+            </div>
+
+            <div class="review-card">
+                <div class="rev-user-info">
+                    <div class="rev-profile">
+                        <div class="rev-avatar">ST</div>
+                        <span class="rev-name">Steve_T</span>
+                    </div>
+                    <span class="rev-badge">✓ Verified User</span>
+                </div>
+                <div class="rev-stars">⭐⭐⭐⭐</div>
+                <p class="rev-text">Text chat works perfectly, uncensored and fast responses. Transitioning into a video call room right now, she's amazing.</p>
+                <span class="rev-time">41 mins ago</span>
+            </div>
+
+            <div class="review-card">
+                <div class="rev-user-info">
+                    <div class="rev-profile">
+                        <div class="rev-avatar">RV</div>
+                        <span class="rev-name">Roni_VIP</span>
+                    </div>
+                    <span class="rev-badge">✓ Verified User</span>
+                </div>
+                <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                <p class="rev-text">Best private stream portal of 2026 hands down. The verification is entirely free and straightforward. Love the dashboard UI.</p>
+                <span class="rev-time">1 hour ago</span>
+            </div>
+
+            <div class="review-card">
+                <div class="rev-user-info">
+                    <div class="rev-profile">
+                        <div class="rev-avatar">DM</div>
+                        <span class="rev-name">Dave_M</span>
+                    </div>
+                    <span class="rev-badge">✓ Verified User</span>
+                </div>
+                <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                <p class="rev-text">Unbelievable! She took my private audio request instantly. This platform is doing a great job keeping bots out via verification.</p>
+                <span class="rev-time">2 hours ago</span>
+            </div>
+
+            <div class="review-card">
+                <div class="rev-user-info">
+                    <div class="rev-profile">
+                        <div class="rev-avatar">CH</div>
+                        <span class="rev-name">Chris_H</span>
+                    </div>
+                    <span class="rev-badge">✓ Verified User</span>
+                </div>
+                <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                <p class="rev-text">The private video quality is true 1080p. No lag at all. Easily unlocked everything with a standard free network sign up.</p>
+                <span class="rev-time">2 hours ago</span>
+            </div>
+
+            <div class="review-card">
+                <div class="rev-user-info">
+                    <div class="rev-profile">
+                        <div class="rev-avatar">G7</div>
+                        <span class="rev-name">Guest_771</span>
+                    </div>
+                    <span class="rev-badge">✓ Verified User</span>
+                </div>
+                <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                <p class="rev-text">Wow wow wow! The live cam feed works completely as advertised. Thank you so much for this secure platform link.</p>
+                <span class="rev-time">3 hours ago</span>
+            </div>
+
+            <div class="review-card">
+                <div class="rev-user-info">
+                    <div class="rev-profile">
+                        <div class="rev-avatar">LB</div>
+                        <span class="rev-name">Leo_B92</span>
+                    </div>
+                    <span class="rev-badge">✓ Verified User</span>
+                </div>
+                <div class="rev-stars">⭐⭐⭐⭐⭐</div>
+                <p class="rev-text">Everything is flawless. Highly interactive features, private text chat is super responsive. A absolute masterpiece portal.</p>
+                <span class="rev-time">3 hours ago</span>
+            </div>
+
+        </div>
+    </div>
+
     <div id="escapeModal" class="escape-overlay">
         <div class="escape-box">
             <img src="https://openmoji.org/data/color/svg/1F6A8.svg" class="siren-img" alt="Siren">
@@ -799,13 +993,13 @@
             const loader = document.getElementById('loadingOverlay');
             const loaderText = document.getElementById('loadingText');
             
-            // NEXT LEVEL: Custom Loader Message Generation based on user selection
             if(loaderText) {
                 if(mode === 'video') loaderText.innerText = "Initializing 1-on-1 Secure Video Stream...";
                 else if(mode === 'audio') loaderText.innerText = "Securing Private Encrypted Voice Line...";
                 else if(mode === 'cam') loaderText.innerText = "Connecting to Private Host Cam Room...";
                 else if(mode === 'chat') loaderText.innerText = "Opening VIP Uncensored Server Feed...";
                 else if(mode === 'clip') loaderText.innerText = "Buffering High-Definition Private Album Clip...";
+                else if(mode === 'live_stream') loaderText.innerText = "Syncing Real-time Member Stream Tunnel...";
                 else loaderText.innerText = "Redirecting to Secure Account Verification Portal...";
             }
             
