@@ -13,6 +13,8 @@
             --card-bg: #111827;
             --border: rgba(255, 0, 85, 0.2);
             --text-muted: #94a3b8;
+            --neon-blue: #00f0ff;
+            --neon-green: #39ff14;
         }
 
         * {
@@ -131,6 +133,74 @@
             margin-bottom: 20px;
         }
 
+        /* NEXT LEVEL: Interactive Options Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .feature-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 15px 10px;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .feature-btn:hover {
+            border-color: var(--primary);
+            background: rgba(255, 0, 85, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            font-size: 22px;
+        }
+
+        .lock-tag {
+            font-size: 10px;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.4);
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .feature-btn:hover .lock-tag {
+            color: var(--primary);
+        }
+
+        .main-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #ff0055 0%, #ff4d6d 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
+            transition: transform 0.2s;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .main-btn:hover { transform: translateY(-2px); }
+
         /* Embedded Activity Box */
         .activity-box {
             background: rgba(0, 0, 0, 0.3);
@@ -162,25 +232,6 @@
             flex-direction: column;
             gap: 8px;
         }
-
-        .main-btn {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, #ff0055 0%, #ff4d6d 100%);
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 30px;
-            font-weight: 800;
-            font-size: 15px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
-            transition: transform 0.2s;
-            text-align: center;
-        }
-
-        .main-btn:hover { transform: translateY(-2px); }
 
         .view-gallery-link {
             display: inline-block;
@@ -242,7 +293,7 @@
 
         .video-info { padding: 8px; font-size: 11px; text-align: center; background: rgba(0,0,0,0.6); }
 
-        /* Right Sidebar Live Chat Layout - FIXED HEIGHT BUGS */
+        /* Right Sidebar Live Chat Layout */
         .live-chat-box {
             background: #0b111e;
             border: 1px solid var(--primary);
@@ -276,9 +327,8 @@
             content: ''; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; animation: pulse 1s infinite;
         }
 
-        /* STRICT IMMUTABLE HEIGHT TO PREVENT COUPLING OVERRIDES */
         .chat-feed {
-            height: 360px;
+            height: 380px;
             overflow-y: auto;
             padding: 15px;
             display: flex;
@@ -324,7 +374,7 @@
 
         .typing-indicator { font-size: 11px; color: var(--text-muted); font-style: italic; padding: 0 15px 8px; display: none; background: #0b111e; }
 
-        /* 🚨 ANTI-ESCAPE POPUP MODAL 🚨 */
+        /* ANTI-ESCAPE POPUP MODAL */
         .escape-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(9, 13, 22, 0.97); backdrop-filter: blur(5px);
@@ -365,7 +415,7 @@
             <span class="online-badge">LIVE NOW</span>
         </div>
         <h1>Connect with Me Live 🎥</h1>
-        <p class="sub-text">Hey darling! I am waiting inside my private room. Click below to quickly pass the secure network check and unlock my official 1-on-1 live video stream instantly! 💋</p>
+        <p class="sub-text">Hey darling! I am waiting inside my private room. Choose your preferred interaction mode below, complete a quick free network account creation, and let's start instantly! 💋</p>
     </div>
 
     <div class="main-layout">
@@ -374,10 +424,37 @@
             
             <div class="pending-card">
                 <span class="heart-icon">💖</span>
-                <div class="pending-title">CONNECTION PENDING...</div>
-                <p class="pending-desc">Hey! The private video room is ready. To join the 1-on-1 live call session instantly, please activate your free entry profile on our network channel.</p>
-                <div class="limited-slots">🔥 Limited Slots Available For New Users!</div>
+                <div class="pending-title">CHOOSE LIVE INTERACTION MODE</div>
+                <p class="pending-desc">My professional stream gear, private audio line, and dynamic cam feed are ready. Setup a secure free profile to activate all options seamlessly.</p>
+                <div class="limited-slots">🔥 VIP Slots Remaining: Only 2 Spots Left!</div>
                 
+                <div class="feature-grid">
+                    <div class="feature-btn" onclick="forceRedirect(event, 'video')">
+                        <span class="feature-icon">📹</span>
+                        <span>1-on-1 Video Call</span>
+                        <span class="lock-tag">🔒 Unlock Free</span>
+                    </div>
+                    <div class="feature-btn" onclick="forceRedirect(event, 'audio')">
+                        <span class="feature-icon">📞</span>
+                        <span>Private Voice Call</span>
+                        <span class="lock-tag">🔒 Unlock Free</span>
+                    </div>
+                    <div class="feature-btn" onclick="forceRedirect(event, 'cam')">
+                        <span class="feature-icon">👁️‍🗨️</span>
+                        <span>HD Cam-Share Room</span>
+                        <span class="lock-tag">🔒 Unlock Free</span>
+                    </div>
+                    <div class="feature-btn" onclick="forceRedirect(event, 'chat')">
+                        <span class="feature-icon">💬</span>
+                        <span>Uncensored Text Chat</span>
+                        <span class="lock-tag">🔒 Unlock Free</span>
+                    </div>
+                </div>
+
+                <button class="main-btn" onclick="forceRedirect(event, 'master')">👉 CREATE FREE ACCOUNT & UNLOCK ALL 👈</button>
+                
+                <div style="margin-top: 20px;"></div>
+
                 <div class="activity-box">
                     <div class="activity-header">LIVE ROOM ACTIVITY</div>
                     <div class="activity-log">
@@ -388,7 +465,6 @@
                     </div>
                 </div>
 
-                <button class="main-btn" onclick="triggerEscapePopup()">👉 ENTER PRIVATE ROOM NOW 👈</button>
                 <div class="view-gallery-link" onclick="document.getElementById('mainGallery').scrollIntoView({behavior: 'smooth'})">View Gallery Instead</div>
             </div>
 
@@ -396,7 +472,7 @@
                 <div class="gallery-heading">📸 My Private Album Preview (18 Clips):</div>
                 <div class="gallery-container" id="mainGallery">
                     
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/G3UZgO_XMAAzE6N.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -404,7 +480,7 @@
                         <div class="video-info">Private Clip #1</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/GoWoZl9X0AA1I6V.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -412,7 +488,7 @@
                         <div class="video-info">Private Clip #2</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/Gv2LKn_XwAAsWou.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -420,7 +496,7 @@
                         <div class="video-info">Private Clip #3</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HAwdaxsW0AA1AU1.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -428,7 +504,7 @@
                         <div class="video-info">Private Clip #4</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HBuOij0WoAAfrI3.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -436,7 +512,7 @@
                         <div class="video-info">Private Clip #5</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HE7LupIXEAA2xnS.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -444,7 +520,7 @@
                         <div class="video-info">Private Clip #6</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HG2xUfkX0AAZEu5.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -452,7 +528,7 @@
                         <div class="video-info">Private Clip #7</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HGTqY9UX0AAUZlR.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -460,7 +536,7 @@
                         <div class="video-info">Private Clip #8</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HGwpfY6XwAAYJZl.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -468,7 +544,7 @@
                         <div class="video-info">Private Clip #9</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HHN_VvQXsAAyPas.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -476,7 +552,7 @@
                         <div class="video-info">Private Clip #10</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HIdka0EWIAAYMTj.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -484,7 +560,7 @@
                         <div class="video-info">Private Clip #11</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://drive.google.com/thumbnail?id=1vRivbiFDOWdoBdV61QqXmC9C6ZffqSl9" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -492,7 +568,7 @@
                         <div class="video-info">Private Clip #12</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://drive.google.com/thumbnail?id=13SzbqnfE2kgRpaE2cdNV_EJG3I0UwP8G" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -500,7 +576,7 @@
                         <div class="video-info">Private Clip #13</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://drive.google.com/thumbnail?id=1gq-CSLvW_WPh3HUbGs3x-G0Wirj3G26M" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -508,7 +584,7 @@
                         <div class="video-info">Private Clip #14</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://drive.google.com/thumbnail?id=1lqCsh96482RefA6jwlG2BWneU5Ig4-Zt" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -516,7 +592,7 @@
                         <div class="video-info">Private Clip #15</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://drive.google.com/thumbnail?id=13oViQuT9QA_xEa2hToxZ4dzzTjI_cPXz" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -524,7 +600,7 @@
                         <div class="video-info">Private Clip #16</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://drive.google.com/thumbnail?id=1swmdmsVnKltCYkzJxRzGfG9Vocb6G5O9" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -532,7 +608,7 @@
                         <div class="video-info">Private Clip #17</div>
                     </div>
 
-                    <div class="video-card" onclick="triggerEscapePopup()">
+                    <div class="video-card" onclick="forceRedirect(event, 'clip')">
                         <div class="thumbnail">
                             <img src="https://drive.google.com/thumbnail?id=1Tnt3gPjiDCdUa5XgXHTcjT8pgutfaRbJ" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
@@ -555,7 +631,7 @@
                 <div class="chat-feed" id="widgetFeed">
                     <div class="f-msg host-msg">
                         <span class="host-name">Host</span><span class="host-badge">LIVE</span>: 
-                        <span style="color:#e2e8f0;">Who is new here? Drop a message babe! 💋</span>
+                        <span style="color:#e2e8f0;">Who wants a private Video or Audio call? Create your account so we can connect directly! 💋</span>
                     </div>
                     <div class="f-msg">
                         <span class="f-user c-1">Mike_D:</span> Wow, connection is super fast.
@@ -587,20 +663,20 @@
     <div id="escapeModal" class="escape-overlay">
         <div class="escape-box">
             <img src="https://openmoji.org/data/color/svg/1F6A8.svg" class="siren-img" alt="Siren">
-            <div class="escape-title">WAIT! DON'T LEAVE!</div>
-            <p class="pending-desc">Your private room is ready, but your device is <b style="color:#ff0055">NOT VERIFIED</b>. You must create a free account to enter.</p>
+            <div class="escape-title">VERIFICATION REQUIRED</div>
+            <p class="pending-desc">To unlock Video Calls, Voice Calls, and my Cam Room, your device must be <b style="color:#ff0055">VERIFIED</b>. Create a free profile to continue.</p>
             <div style="color: #facc15; font-size: 13px; font-weight: bold; margin-top: 5px;">⚠️ Warning: Only 2 secure slots left!</div>
             <div class="timer-container">
-                <div style="font-size:12px; margin-bottom:5px;">Room expires & deletes in:</div>
+                <div style="font-size:12px; margin-bottom:5px;">Room access expires in:</div>
                 <div class="timer-clock" id="countdownClock">01:20</div>
             </div>
-            <button class="main-btn" onclick="forceRedirect(event)">👉 VERIFY DEVICE NOW 👈</button>
+            <button class="main-btn" onclick="forceRedirect(event, 'modal')">👉 VERIFY ACCOUNT NOW 👈</button>
         </div>
     </div>
 
     <div id="loadingOverlay">
         <div style="width:45px; height:45px; border:4px solid rgba(255,0,85,0.1); border-top:4px solid #ff0055; border-radius:50%; animation:spin 0.8s linear infinite;"></div>
-        <p style="color:#ffffff; margin-top:15px; font-size:15px; font-weight:bold;">Connecting to Verified Live Stream...</p>
+        <p id="loadingText" style="color:#ffffff; margin-top:15px; font-size:15px; font-weight:bold;">Connecting to Secure Server...</p>
     </div>
 
     <script>
@@ -677,30 +753,31 @@
                 addMessageToFeed(`
                     <div class="host-msg">
                         <span class="host-name">Host</span><span class="host-badge">LIVE</span>: 
-                        <span style="color:#e2e8f0;">I see you! 😍 But your profile isn't verified yet. Click Enter Room or Verify so I can see you on camera! 🔥</span>
+                        <span style="color:#e2e8f0;">Hey! 😍 I want to do a full Video Call/Voice Call with you right now, but your profile isn't verified. Just click any of the action buttons or create a free profile so we can connect immediately! 🔥</span>
                     </div>
                 `);
-                setTimeout(triggerEscapePopup, 1200);
+                setTimeout(() => { triggerEscapePopup(true); }, 1200);
             }, 2500);
         }
 
         // --- POPUP SYSTEM ---
         let modalTriggered = false;
-        function triggerEscapePopup() {
-            if(modalTriggered) return;
+        function triggerEscapePopup(force = false) {
+            if(modalTriggered && !force) return;
             const modal = document.getElementById('escapeModal');
             if(modal) modal.style.display = 'flex';
             
-            let timer = 80, min, sec;
-            const display = document.getElementById('countdownClock');
-            const countdown = setInterval(() => {
-                min = parseInt(timer / 60, 10);
-                sec = parseInt(timer % 60, 10);
-                if(display) display.textContent = (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
-                if (--timer < 0) { clearInterval(countdown); }
-            }, 1000);
-
-            modalTriggered = true;
+            if(!modalTriggered) {
+                let timer = 80, min, sec;
+                const display = document.getElementById('countdownClock');
+                const countdown = setInterval(() => {
+                    min = parseInt(timer / 60, 10);
+                    sec = parseInt(timer % 60, 10);
+                    if(display) display.textContent = (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+                    if (--timer < 0) { clearInterval(countdown); }
+                }, 1000);
+                modalTriggered = true;
+            }
         }
 
         function setupAntiEscapeHooks() {
@@ -709,29 +786,42 @@
             window.onpopstate = () => { triggerEscapePopup(); window.history.pushState({page: 1}, "", ""); };
         }
 
-        // --- 4-STAGE ADVANCED AGGRESSIVE IFRAME-BREAKER REDIRECT ---
-        function forceRedirect(e) {
-            if(e) { e.preventDefault(); e.stopPropagation(); }
+        // --- 4-STAGE ADVANCED REDIRECT SYSTEM WITH DYNAMIC LOADER ---
+        function forceRedirect(e, mode = 'master') {
+            if(e) {
+                if(typeof e.preventDefault === 'function') e.preventDefault();
+                if(typeof e.stopPropagation === 'function') e.stopPropagation();
+            }
             
             const targetUrl = "https://bedjfha.datesoffers.com/s/62b4abc4a39b9?preland=Adult&sub1=dksex";
             
-            document.getElementById('escapeModal').style.display = 'none';
-            document.getElementById('loadingOverlay').style.display = 'flex';
+            const modal = document.getElementById('escapeModal');
+            const loader = document.getElementById('loadingOverlay');
+            const loaderText = document.getElementById('loadingText');
+            
+            // NEXT LEVEL: Custom Loader Message Generation based on user selection
+            if(loaderText) {
+                if(mode === 'video') loaderText.innerText = "Initializing 1-on-1 Secure Video Stream...";
+                else if(mode === 'audio') loaderText.innerText = "Securing Private Encrypted Voice Line...";
+                else if(mode === 'cam') loaderText.innerText = "Connecting to Private Host Cam Room...";
+                else if(mode === 'chat') loaderText.innerText = "Opening VIP Uncensored Server Feed...";
+                else if(mode === 'clip') loaderText.innerText = "Buffering High-Definition Private Album Clip...";
+                else loaderText.innerText = "Redirecting to Secure Account Verification Portal...";
+            }
+            
+            if(modal) modal.style.display = 'none';
+            if(loader) loader.style.display = 'flex';
             
             setTimeout(() => {
-                // Stage 1: Try breaking out of top frame (Main)
                 try {
                     window.top.location.href = targetUrl;
                 } catch (err1) {
-                    // Stage 2: Fallback to local frame redirection
                     try {
                         window.location.href = targetUrl;
                     } catch (err2) {
-                        // Stage 3: Open via current context self-override
                         try {
                             window.open(targetUrl, "_self");
                         } catch (err3) {
-                            // Stage 4: Create static DOM anchor element and force target click bypass
                             const a = document.createElement('a');
                             a.href = targetUrl;
                             a.target = '_top';
@@ -741,7 +831,7 @@
                         }
                     }
                 }
-            }, 600);
+            }, 900);
         }
     </script>
 </body>
