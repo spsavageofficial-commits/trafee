@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔒 VIP Member Portal - Private Live Access</title>
     <style>
-        /* Premium Dark & Hot-Pink Theme */
+        /* Premium Dark & Neon Pink Theme */
         :root {
             --primary: #ff0055;
             --primary-hover: #e6004c;
-            --secondary: #1e293b;
-            --dark: #090d16;
-            --glass: rgba(255, 255, 255, 0.06);
-            --border: rgba(255, 255, 255, 0.1);
+            --dark-bg: #090d16;
+            --card-bg: #111827;
+            --border: rgba(255, 0, 85, 0.2);
+            --text-muted: #94a3b8;
         }
 
         * {
@@ -22,25 +22,25 @@
         }
 
         body {
-            background-color: var(--dark);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--dark-bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: #ffffff;
-            padding-bottom: 80px;
+            padding-bottom: 40px;
+            overflow-x: hidden;
         }
 
-        /* Top Header */
+        /* Header section */
         .header {
             text-align: center;
-            padding: 40px 20px 25px;
-            background: linear-gradient(to bottom, rgba(255, 0, 85, 0.2), transparent);
-            border-bottom: 1px solid rgba(255, 0, 85, 0.1);
+            padding: 30px 20px;
+            background: linear-gradient(to bottom, rgba(255, 0, 85, 0.15), transparent);
         }
 
         .profile-container {
             position: relative;
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 15px;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 12px;
         }
 
         .profile-img {
@@ -49,402 +49,305 @@
             border-radius: 50%;
             border: 3px solid var(--primary);
             object-fit: cover;
-            box-shadow: 0 0 25px rgba(255, 0, 85, 0.6);
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
         }
 
         .online-badge {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
+            bottom: 3px;
+            right: 3px;
             background: #22c55e;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
             font-weight: bold;
-            border: 2px solid var(--dark);
             animation: blink 1.5s infinite;
         }
 
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        h1 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+        .sub-text { color: var(--text-muted); font-size: 13.5px; max-width: 500px; margin: 0 auto; line-height: 1.5; }
+
+        /* Main Dual Column Layout */
+        .main-layout {
+            display: flex;
+            max-width: 1150px;
+            margin: 20px auto;
+            padding: 0 20px;
+            gap: 25px;
         }
 
-        h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
-        .sub-text { color: #94a3b8; font-size: 14px; max-width: 450px; margin: 0 auto; line-height: 1.5; }
+        .left-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
 
-        /* Gallery Grid Layout */
-        .gallery-heading {
-            max-width: 1000px;
-            margin: 40px auto 15px;
-            padding: 0 20px;
-            font-size: 14px;
-            text-transform: uppercase;
+        .right-sidebar {
+            width: 350px;
+            flex-shrink: 0;
+        }
+
+        /* Connection Pending Card Styling */
+        .pending-card {
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.1);
+        }
+
+        .heart-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+        .pending-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--primary);
             letter-spacing: 1px;
-            color: #64748b;
+            margin-bottom: 12px;
         }
 
-        .gallery-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
+        .pending-desc {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
 
-        .video-card {
-            background: var(--glass);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: transform 0.3s, border-color 0.3s;
-            color: white;
-            position: relative;
+        .limited-slots {
+            font-size: 13px;
+            color: #facc15;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Embedded Activity Box */
+        .activity-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .activity-header {
+            font-size: 11px;
+            font-weight: bold;
+            color: #ef4444;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .activity-header::before {
+            content: ''; display: inline-block; width: 6px; height: 6px; background: #ef4444; border-radius: 50%;
+        }
+
+        .activity-log {
+            font-size: 12.5px;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .main-btn {
             display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #ff0055 0%, #ff4d6d 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .main-btn:hover { transform: translateY(-2px); }
+
+        .view-gallery-link {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: underline;
             cursor: pointer;
         }
 
-        .video-card:hover {
-            transform: scale(1.04);
-            border-color: var(--primary);
+        /* Gallery Grid Area */
+        .gallery-heading {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            margin-bottom: 10px;
         }
 
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .video-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .video-card:hover { transform: scale(1.03); border-color: var(--primary); }
+
         .thumbnail {
+            position: relative;
             width: 100%;
             aspect-ratio: 9/16;
             background: #111827;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-        
+
         .thumb-img {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; opacity: 0.8; 
+            top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
         }
 
         .play-btn {
-            position: absolute;
-            background: var(--primary);
-            width: 46px; height: 46px;
-            border-radius: 50%;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: var(--primary); width: 36px; height: 36px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.5);
-            z-index: 2;
         }
 
         .play-triangle {
-            width: 0; height: 0;
-            border-top: 9px solid transparent;
-            border-left: 15px solid white;
-            border-bottom: 9px solid transparent;
-            margin-left: 5px;
+            width: 0; height: 0; border-top: 7px solid transparent; border-left: 11px solid white; border-bottom: 7px solid transparent; margin-left: 3px;
         }
 
-        .video-info {
-            padding: 10px; font-size: 12px; text-align: center;
-            background: rgba(0, 0, 0, 0.75); font-weight: 600;
-            position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.05);
-        }
+        .video-info { padding: 8px; font-size: 11px; text-align: center; background: rgba(0,0,0,0.6); }
 
-        /* 👑 VIP INTERACTIVE LIVE CHAT WIDGET 👑 */
-        .floating-chat {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 340px;
-            background: rgba(11, 17, 30, 0.98);
-            backdrop-filter: blur(12px);
+        /* Right Sidebar Live Chat Layout */
+        .live-chat-box {
+            background: #0b111e;
             border: 1px solid var(--primary);
             border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(255, 0, 85, 0.4);
-            z-index: 9999;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
+            height: 480px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .f-chat-header {
-            background: #111827;
-            padding: 12px 14px;
+        .chat-header {
+            background: var(--card-bg);
+            padding: 12px 15px;
             font-size: 13px;
             font-weight: bold;
-            color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .f-live-indicator {
+        .live-indicator {
             color: #ef4444;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 0.5px;
         }
 
-        .f-live-indicator::before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #ef4444;
-            border-radius: 50%;
-            animation: pulse-dot 1.5s infinite;
+        .live-indicator::before {
+            content: ''; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; animation: pulse 1s infinite;
         }
 
-        .f-chat-feed {
-            height: 200px;
+        .chat-feed {
+            flex: 1;
             overflow-y: auto;
-            padding: 12px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             scroll-behavior: smooth;
         }
 
-        .f-chat-feed::-webkit-scrollbar { width: 4px; }
-        .f-chat-feed::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        .chat-feed::-webkit-scrollbar { width: 4px; }
+        .chat-feed::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
 
-        .f-msg {
-            font-size: 13px;
-            line-height: 1.4;
-            animation: slideUpMsg 0.3s ease-out forwards;
-            word-wrap: break-word;
+        .f-msg { font-size: 13px; line-height: 1.4; word-wrap: break-word; }
+        .f-user { font-weight: bold; margin-right: 5px; }
+        .my-msg {
+            text-align: right; background: rgba(255, 255, 255, 0.08);
+            padding: 8px 12px; border-radius: 12px 12px 0 12px; align-self: flex-end; max-width: 85%;
         }
-
-        .f-user { font-weight: bold; margin-right: 4px; }
-        .f-text { color: #e2e8f0; }
 
         .host-msg {
-            background: rgba(255, 0, 85, 0.15);
-            border-left: 3px solid var(--primary);
-            padding: 8px 10px;
-            border-radius: 0 8px 8px 0;
-            margin: 4px 0;
-        }
-        .host-name { color: #ff0055; font-weight: 900; }
-        .host-badge {
-            background: #ff0055; color: white;
-            font-size: 9px; padding: 2px 5px; border-radius: 4px;
-            margin-left: 4px; vertical-align: middle;
+            background: rgba(255, 0, 85, 0.12); border-left: 3px solid var(--primary);
+            padding: 6px 10px; border-radius: 0 8px 8px 0;
         }
 
-        .my-msg {
-            text-align: right;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 8px 12px;
-            border-radius: 12px 12px 0 12px;
-            align-self: flex-end;
-            max-width: 85%;
-            color: #fff;
-            margin: 4px 0;
+        .host-name { color: var(--primary); font-weight: 900; }
+        .host-badge { background: var(--primary); font-size: 8px; padding: 1px 4px; border-radius: 3px; margin-left: 3px; }
+
+        .c-1 { color: #38bdf8; } .c-2 { color: #a78bfa; } .c-3 { color: #34d399; } .c-4 { color: #fbbf24; }
+
+        .chat-input-area {
+            display: flex; padding: 10px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        .c-1 { color: #38bdf8; } .c-2 { color: #a78bfa; } .c-3 { color: #34d399; } .c-4 { color: #fbbf24; } .c-5 { color: #f472b6; }
-
-        .f-chat-input-area {
-            display: flex;
-            padding: 10px;
-            background: rgba(0,0,0,0.4);
-            border-top: 1px solid rgba(255,255,255,0.1);
+        .chat-input {
+            flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            color: white; padding: 10px 15px; border-radius: 20px; font-size: 13px; outline: none;
         }
 
-        .f-chat-input {
-            flex: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            padding: 10px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            outline: none;
-        }
-        .f-chat-input::placeholder { color: #64748b; }
-
-        .f-chat-send {
-            background: var(--primary);
-            border: none;
-            color: white;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            margin-left: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.2s;
-        }
-        .f-chat-send:hover { transform: scale(1.1); background: var(--primary-hover); }
-
-        .typing-indicator {
-            font-size: 11px;
-            color: #94a3b8;
-            font-style: italic;
-            padding: 0 12px 5px;
-            display: none;
+        .chat-send-btn {
+            background: var(--primary); border: none; color: white; width: 36px; height: 36px;
+            border-radius: 50%; margin-left: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
 
-        @keyframes slideUpMsg {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .typing-indicator { font-size: 11px; color: var(--text-muted); font-style: italic; padding: 0 15px 8px; display: none; }
 
-        @keyframes pulse-dot {
-            0% { transform: scale(0.9); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.4; }
-            100% { transform: scale(0.9); opacity: 1; }
-        }
-
-        /* 🚨 ANTI-ESCAPE MODAL STYLES 🚨 */
+        /* 🚨 ANTI-ESCAPE POPUP MODAL 🚨 */
         .escape-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(9, 13, 22, 0.96);
-            backdrop-filter: blur(8px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 99999;
-            padding: 20px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(9, 13, 22, 0.97); backdrop-filter: blur(5px);
+            display: none; align-items: center; justify-content: center; z-index: 99999; padding: 20px;
         }
 
         .escape-box {
-            background: #111827;
-            border: 3px solid #ff0055;
-            border-radius: 24px;
-            max-width: 440px;
-            width: 100%;
-            padding: 35px 25px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(255, 0, 85, 0.4);
-            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            background: var(--card-bg); border: 3px solid var(--primary); border-radius: 24px;
+            max-width: 420px; width: 100%; padding: 30px 20px; text-align: center;
+            box-shadow: 0 20px 50px rgba(255, 0, 85, 0.3);
         }
 
-        @keyframes popIn {
-            0% { transform: scale(0.7); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        .siren-img { width: 55px; margin-bottom: 12px; }
+        .escape-title { font-size: 24px; font-weight: 900; color: var(--primary); margin-bottom: 12px; }
+        .timer-container { border: 2px dashed rgba(255, 0, 85, 0.3); border-radius: 10px; padding: 10px; margin: 15px 0 20px; }
+        .timer-clock { font-size: 20px; font-weight: 800; color: var(--primary); }
 
-        .siren-icon {
-            width: 65px;
-            margin-bottom: 15px;
-            animation: rotateSiren 0.8s ease-in-out infinite alternate;
-        }
-
-        @keyframes rotateSiren {
-            from { transform: rotate(-10deg); }
-            to { transform: rotate(10deg); }
-        }
-
-        .escape-headline {
-            font-size: 26px;
-            font-weight: 900;
-            color: #ff0055;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .escape-body {
-            font-size: 14.5px;
-            color: #cbd5e1;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .escape-body span {
-            background: #ff0055;
-            color: #ffffff;
-            padding: 1px 5px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        .escape-warning {
-            color: #facc15;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .timer-container {
-            border: 2px dashed rgba(255, 0, 85, 0.4);
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 25px;
-            background: rgba(255, 0, 85, 0.03);
-        }
-
-        .timer-title {
-            font-size: 13px;
-            color: #ffffff;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .timer-clock {
-            font-size: 22px;
-            font-weight: 800;
-            color: #ff0055;
-            letter-spacing: 1px;
-        }
-
-        .main-link-btn {
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-            background: linear-gradient(135deg, #ff0055 0%, #ff4d6d 100%);
-            color: #ffffff;
-            text-decoration: none;
-            text-align: center;
-            padding: 18px 20px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            box-shadow: 0 8px 25px rgba(255, 0, 85, 0.4);
-            transition: transform 0.2s, opacity 0.2s;
-            cursor: pointer;
-            border: none;
-        }
-
-        .main-link-btn:hover {
-            transform: translateY(-1px);
-            opacity: 0.95;
-        }
-
-        /* Loading Overlay Style */
         #loadingOverlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #090d16; z-index: 999999; align-items: center; justify-content: center;
-            flex-direction: column;
+            background: var(--dark-bg); z-index: 999999; align-items: center; justify-content: center; flex-direction: column;
         }
 
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        @media (max-width: 480px) {
-            .gallery-container { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            h1 { font-size: 22px; }
-            .floating-chat {
-                width: 100%;
-                bottom: 0; right: 0;
-                border-radius: 16px 16px 0 0;
-            }
+        /* Mobile Responsiveness */
+        @media (max-width: 850px) {
+            .main-layout { flex-direction: column; }
+            .right-sidebar { width: 100%; }
+            .gallery-container { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -459,25 +362,210 @@
         <p class="sub-text">Hey darling! I am waiting inside my private room. Click below to quickly pass the secure network check and unlock my official 1-on-1 live video stream instantly! 💋</p>
     </div>
 
-    <div class="floating-chat" id="chatWidget">
-        <div class="f-chat-header">
-            <span class="f-live-indicator">Live Broadcast</span>
-            <span style="color: #64748b;"><span id="onlineCount">1,245</span> online</span>
-        </div>
+    <div class="main-layout">
         
-        <div class="f-chat-feed" id="widgetFeed">
-            </div>
-        
-        <div class="typing-indicator" id="typingIndicator">Host is typing...</div>
+        <div class="left-content">
+            
+            <div class="pending-card">
+                <span class="heart-icon">💖</span>
+                <div class="pending-title">CONNECTION PENDING...</div>
+                <p class="pending-desc">Hey! The private video room is ready. To join the 1-on-1 live call session instantly, please activate your free entry profile on our network channel.</p>
+                <div class="limited-slots">🔥 Limited Slots Available For New Users!</div>
+                
+                <div class="activity-box">
+                    <div class="activity-header">LIVE ROOM ACTIVITY</div>
+                    <div class="activity-log">
+                        <div><span class="f-user c-1">Mike_D:</span> Room is getting full guys hurry up!</div>
+                        <div><span class="f-user c-2">Leo_11:</span> Just created my account, wait for me!</div>
+                        <div><span class="f-user c-3">Alexx:</span> She is gorgeous 😍</div>
+                        <div><span class="f-user c-1">Alexx:</span> Room is getting full guys hurry up!</div>
+                    </div>
+                </div>
 
-        <div class="f-chat-input-area">
-            <input type="text" id="userChatInput" class="f-chat-input" placeholder="Say hi to host..." onkeypress="handleEnter(event)">
-            <button class="f-chat-send" onclick="sendUserMessage()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-            </button>
+                <button class="main-btn" onclick="triggerEscapePopup()">👉 ENTER PRIVATE ROOM NOW 👈</button>
+                <div class="view-gallery-link" onclick="document.getElementById('mainGallery').scrollIntoView({behavior: 'smooth'})">View Gallery Instead</div>
+            </div>
+
+            <div>
+                <div class="gallery-heading">📸 My Private Album Preview (18 Clips):</div>
+                <div class="gallery-container" id="mainGallery">
+                    </div>
+            </div>
+
+        </div>
+
+        <div class="right-sidebar">
+            <div class="live-chat-box">
+                <div class="chat-header">
+                    <span class="live-indicator">Live Broadcast</span>
+                    <span style="color: #64748b;"><span id="onlineCount">1,245</span> online</span>
+                </div>
+                
+                <div class="chat-feed" id="widgetFeed">
+                    </div>
+                
+                <div class="typing-indicator" id="typingIndicator">Host is typing...</div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="userChatInput" class="chat-input" placeholder="Say hi to host..." onkeypress="handleEnter(event)">
+                    <button class="chat-send-btn" onclick="sendUserMessage()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="escapeModal" class="escape-overlay">
+        <div class="escape-box">
+            <img src="https://openmoji.org/data/color/svg/1F6A8.svg" class="siren-img" alt="Siren">
+            <div class="escape-title">WAIT! DON'T LEAVE!</div>
+            <p class="pending-desc">Your private room is ready, but your device is <b style="color:#ff0055">NOT VERIFIED</b>. You must create a free account to enter.</p>
+            <div class="timer-container">
+                <div style="font-size:12px; margin-bottom:5px;">Room expires & deletes in:</div>
+                <div class="timer-clock" id="countdownClock">01:20</div>
+            </div>
+            <button class="main-btn" onclick="forceRedirect(event)">👉 VERIFY DEVICE NOW 👈</button>
         </div>
     </div>
 
-    <div class="gallery-heading">📸 My Private Album Preview (18 Clips):</div>
-    
-    <div class="gallery-container" id="mainGallery"></div>
+    <div id="loadingOverlay">
+        <div style="width:45px; height:45px; border:4px solid rgba(255,0,85,0.1); border-top:4px solid #ff0055; border-radius:50%; animation:spin 0.8s linear infinite;"></div>
+        <p style="color:#ffffff; margin-top:15px; font-size:15px; font-weight:bold;">Connecting to Verified Live Stream...</p>
+    </div>
+
+    <script>
+        // --- 100% SAFE RUNTIME BOOTSTRAPPING ---
+        function initAllFeatures() {
+            renderSecureGallery();
+            startLiveChatSimulation();
+            setupAntiEscapeHooks();
+        }
+
+        // ব্রাউজারের স্টেট চেক করে স্ক্রিপ্ট ফায়ার করার আধুনিক সিস্টেম
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initAllFeatures);
+        } else {
+            initAllFeatures();
+        }
+
+        // --- GALLERY GENERATOR ---
+        function renderSecureGallery() {
+            const gallery = document.getElementById('mainGallery');
+            if(!gallery) return;
+
+            const githubImgs = [
+                "G3UZgO_XMAAzE6N.jpg", "GoWoZl9X0AA1I6V.jpg", "Gv2LKn_XwAAsWou.jpg", 
+                "HAwdaxsW0AA1AU1.jpg", "HBuOij0WoAAfrI3.jpg", "HE7LupIXEAA2xnS.jpg", 
+                "HG2xUfkX0AAZEu5.jpg", "HGTqY9UX0AAUZlR.jpg", "HGwpfY6XwAAYJZl.jpg", 
+                "HHN_VvQXsAAyPas.jpg", "HIdka0EWIAAYMTj.jpg"
+            ];
+
+            const driveIds = [
+                "1vRivbiFDOWdoBdV61QqXmC9C6ZffqSl9", "13SzbqnfE2kgRpaE2cdNV_EJG3I0UwP8G",
+                "1gq-CSLvW_WPh3HUbGs3x-G0Wirj3G26M", "1lqCsh96482RefA6jwlG2BWneU5Ig4-Zt",
+                "13oViQuT9QA_xEa2hToxZ4dzzTjI_cPXz", "1swmdmsVnKltCYkzJxRzGfG9Vocb6G5O9",
+                "1Tnt3gPjiDCdUa5XgXHTcjT8pgutfaRbJ"
+            ];
+
+            for (let i = 1; i <= 18; i++) {
+                let src = i <= 11 
+                    ? `https://github.com/mizan000321-ops/newv/blob/main/${githubImgs[i-1]}?raw=true`
+                    : `https://drive.google.com/thumbnail?id=${driveIds[i-12]}`;
+
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.onclick = triggerEscapePopup;
+                card.innerHTML = `
+                    <div class="thumbnail">
+                        <img src="${src}" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                        <div class="play-btn"><div class="play-triangle"></div></div>
+                    </div>
+                    <div class="video-info">Private Clip #${i}</div>
+                `;
+                gallery.appendChild(card);
+            }
+        }
+
+        // --- LIVE CHAT SYSTEM ---
+        let autoChatInterval;
+        let isUserInteracting = false;
+        const usernames = ["Guest_771", "Mike_D", "Alexx", "JohnyB", "Chris88", "David_M", "Leo_11"];
+        const messages = ["Wow, connection is super fast.", "I'm in! Let's gooo 🚀", "She is gorgeous 😍", "Quality is 1080p, nice."];
+
+        function startLiveChatSimulation() {
+            const feed = document.getElementById('widgetFeed');
+            if(!feed) return;
+
+            // Initial message from Host
+            setTimeout(() => {
+                addMessageToFeed(`
+                    <div class="host-msg">
+                        <span class="host-name">Host</span><span class="host-badge">LIVE</span>: 
+                        <span style="color:#e2e8f0;">Who is new here? Drop a message babe! 💋</span>
+                    </div>
+                `);
+            }, 1000);
+
+            autoChatInterval = setInterval(() => {
+                if(isUserInteracting) return;
+                const name = usernames[Math.floor(Math.random() * usernames.length)];
+                const msg = messages[Math.floor(Math.random() * messages.length)];
+                const color = "c-" + (Math.floor(Math.random() * 4) + 1);
+                addMessageToFeed(`<span class="f-user ${color}">${name}:</span> <span style="color:#cbd5e1;">${msg}</span>`);
+            }, 3000);
+
+            // Online counter fluctuations
+            setInterval(() => {
+                const countEl = document.getElementById("onlineCount");
+                if(!countEl) return;
+                let val = parseInt(countEl.innerText.replace(/,/g, ''));
+                countEl.innerText = (val + (Math.floor(Math.random() * 5) - 2)).toLocaleString();
+            }, 2500);
+        }
+
+        function addMessageToFeed(htmlContent, isMyMsg = false) {
+            const feed = document.getElementById('widgetFeed');
+            if(!feed) return;
+            const msgDiv = document.createElement('div');
+            msgDiv.className = isMyMsg ? 'my-msg f-msg' : 'f-msg';
+            msgDiv.innerHTML = htmlContent;
+            feed.appendChild(msgDiv);
+            feed.scrollTop = feed.scrollHeight;
+        }
+
+        // --- USER CHAT LOGIC ---
+        function handleEnter(e) { if(e.key === 'Enter') sendUserMessage(); }
+
+        function sendUserMessage() {
+            const inputEl = document.getElementById('userChatInput');
+            const indicator = document.getElementById('typingIndicator');
+            if(!inputEl || !inputEl.value.trim()) return;
+
+            const userMsg = inputEl.value.trim();
+            addMessageToFeed(userMsg, true);
+            inputEl.value = "";
+            inputEl.disabled = true;
+            isUserInteracting = true;
+            clearInterval(autoChatInterval);
+
+            // Trigger "Host is typing..."
+            setTimeout(() => { if(indicator) indicator.style.display = "block"; }, 800);
+
+            // Host replies back & pops the lock
+            setTimeout(() => {
+                if(indicator) indicator.style.display = "none";
+                addMessageToFeed(`
+                    <div class="host-msg">
+                        <span class="host-name">Host</span><span class="host-badge">LIVE</span>: 
+                        <span style="color:#e2e8f0;">I see you! 😍 But your profile isn't verified yet. Click Enter Room/Verify so I can turn on your cam! 🔥</span>
+                    </div>
+                `);
+
+                setTimeout(triggerEscapePopup, 1800);
+            }, 3000);
+        }
+
+        // --- ANTI-ESCAPE HANDLING ---
+        let modalTrigger
