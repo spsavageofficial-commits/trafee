@@ -222,12 +222,12 @@
             position: relative;
             width: 100%;
             aspect-ratio: 9/16;
-            background: #111827;
+            background: #1e293b;
         }
 
         .thumb-img {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
+            top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.9;
         }
 
         .play-btn {
@@ -242,15 +242,15 @@
 
         .video-info { padding: 8px; font-size: 11px; text-align: center; background: rgba(0,0,0,0.6); }
 
-        /* Right Sidebar Live Chat Layout */
+        /* Right Sidebar Live Chat Layout - FIXED HEIGHT BUGS */
         .live-chat-box {
             background: #0b111e;
             border: 1px solid var(--primary);
             border-radius: 16px;
             display: flex;
             flex-direction: column;
-            height: 480px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
         }
 
         .chat-header {
@@ -276,24 +276,26 @@
             content: ''; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; animation: pulse 1s infinite;
         }
 
+        /* STRICT IMMUTABLE HEIGHT TO PREVENT COUPLING OVERRIDES */
         .chat-feed {
-            flex: 1;
+            height: 360px;
             overflow-y: auto;
             padding: 15px;
             display: flex;
             flex-direction: column;
             gap: 12px;
             scroll-behavior: smooth;
+            background: #0b111e;
         }
 
         .chat-feed::-webkit-scrollbar { width: 4px; }
         .chat-feed::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
 
-        .f-msg { font-size: 13px; line-height: 1.4; word-wrap: break-word; }
+        .f-msg { font-size: 13px; line-height: 1.4; word-wrap: break-word; color: #cbd5e1; }
         .f-user { font-weight: bold; margin-right: 5px; }
         .my-msg {
             text-align: right; background: rgba(255, 255, 255, 0.08);
-            padding: 8px 12px; border-radius: 12px 12px 0 12px; align-self: flex-end; max-width: 85%;
+            padding: 8px 12px; border-radius: 12px 12px 0 12px; align-self: flex-end; max-width: 85%; color: #fff;
         }
 
         .host-msg {
@@ -302,7 +304,7 @@
         }
 
         .host-name { color: var(--primary); font-weight: 900; }
-        .host-badge { background: var(--primary); font-size: 8px; padding: 1px 4px; border-radius: 3px; margin-left: 3px; }
+        .host-badge { background: var(--primary); font-size: 8px; padding: 1px 4px; border-radius: 3px; margin-left: 3px; color: #fff; }
 
         .c-1 { color: #38bdf8; } .c-2 { color: #a78bfa; } .c-3 { color: #34d399; } .c-4 { color: #fbbf24; }
 
@@ -320,7 +322,7 @@
             border-radius: 50%; margin-left: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
 
-        .typing-indicator { font-size: 11px; color: var(--text-muted); font-style: italic; padding: 0 15px 8px; display: none; }
+        .typing-indicator { font-size: 11px; color: var(--text-muted); font-style: italic; padding: 0 15px 8px; display: none; background: #0b111e; }
 
         /* 🚨 ANTI-ESCAPE POPUP MODAL 🚨 */
         .escape-overlay {
@@ -345,6 +347,8 @@
             background: var(--dark-bg); z-index: 999999; align-items: center; justify-content: center; flex-direction: column;
         }
 
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
         /* Mobile Responsiveness */
         @media (max-width: 850px) {
             .main-layout { flex-direction: column; }
@@ -357,7 +361,7 @@
 
     <div class="header">
         <div class="profile-container">
-            <img src="https://github.com/mizan000321-ops/newv/blob/main/G3UZgO_XMAAzE6N.jpg?raw=true" alt="Live Host" class="profile-img">
+            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/G3UZgO_XMAAzE6N.jpg" alt="Live Host" class="profile-img">
             <span class="online-badge">LIVE NOW</span>
         </div>
         <h1>Connect with Me Live 🎥</h1>
@@ -394,7 +398,7 @@
                     
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/G3UZgO_XMAAzE6N.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/G3UZgO_XMAAzE6N.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #1</div>
@@ -402,7 +406,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/GoWoZl9X0AA1I6V.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/GoWoZl9X0AA1I6V.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #2</div>
@@ -410,7 +414,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/Gv2LKn_XwAAsWou.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/Gv2LKn_XwAAsWou.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #3</div>
@@ -418,7 +422,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/HAwdaxsW0AA1AU1.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HAwdaxsW0AA1AU1.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #4</div>
@@ -426,7 +430,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/HBuOij0WoAAfrI3.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HBuOij0WoAAfrI3.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #5</div>
@@ -434,7 +438,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/HE7LupIXEAA2xnS.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HE7LupIXEAA2xnS.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #6</div>
@@ -442,7 +446,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/HG2xUfkX0AAZEu5.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HG2xUfkX0AAZEu5.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #7</div>
@@ -450,7 +454,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/HGTqY9UX0AAUZlR.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HGTqY9UX0AAUZlR.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #8</div>
@@ -458,7 +462,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/HGwpfY6XwAAYJZl.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HGwpfY6XwAAYJZl.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #9</div>
@@ -466,7 +470,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/HHN_VvQXsAAyPas.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HHN_VvQXsAAyPas.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #10</div>
@@ -474,7 +478,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://github.com/mizan000321-ops/newv/blob/main/HIdka0EWIAAYMTj.jpg?raw=true" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://raw.githubusercontent.com/mizan000321-ops/newv/main/HIdka0EWIAAYMTj.jpg" class="thumb-img">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #11</div>
@@ -482,7 +486,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://drive.google.com/thumbnail?id=1vRivbiFDOWdoBdV61QqXmC9C6ZffqSl9" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://drive.google.com/thumbnail?id=1vRivbiFDOWdoBdV61QqXmC9C6ZffqSl9" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #12</div>
@@ -490,7 +494,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://drive.google.com/thumbnail?id=13SzbqnfE2kgRpaE2cdNV_EJG3I0UwP8G" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://drive.google.com/thumbnail?id=13SzbqnfE2kgRpaE2cdNV_EJG3I0UwP8G" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #13</div>
@@ -498,7 +502,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://drive.google.com/thumbnail?id=1gq-CSLvW_WPh3HUbGs3x-G0Wirj3G26M" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://drive.google.com/thumbnail?id=1gq-CSLvW_WPh3HUbGs3x-G0Wirj3G26M" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #14</div>
@@ -506,7 +510,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://drive.google.com/thumbnail?id=1lqCsh96482RefA6jwlG2BWneU5Ig4-Zt" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://drive.google.com/thumbnail?id=1lqCsh96482RefA6jwlG2BWneU5Ig4-Zt" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #15</div>
@@ -514,7 +518,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://drive.google.com/thumbnail?id=13oViQuT9QA_xEa2hToxZ4dzzTjI_cPXz" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://drive.google.com/thumbnail?id=13oViQuT9QA_xEa2hToxZ4dzzTjI_cPXz" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #16</div>
@@ -522,7 +526,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://drive.google.com/thumbnail?id=1swmdmsVnKltCYkzJxRzGfG9Vocb6G5O9" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://drive.google.com/thumbnail?id=1swmdmsVnKltCYkzJxRzGfG9Vocb6G5O9" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #17</div>
@@ -530,7 +534,7 @@
 
                     <div class="video-card" onclick="triggerEscapePopup()">
                         <div class="thumbnail">
-                            <img src="https://drive.google.com/thumbnail?id=1Tnt3gPjiDCdUa5XgXHTcjT8pgutfaRbJ" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'">
+                            <img src="https://drive.google.com/thumbnail?id=1Tnt3gPjiDCdUa5XgXHTcjT8pgutfaRbJ" class="thumb-img" onerror="this.style.opacity='0.3'">
                             <div class="play-btn"><div class="play-triangle"></div></div>
                         </div>
                         <div class="video-info">Private Clip #18</div>
@@ -545,3 +549,200 @@
             <div class="live-chat-box">
                 <div class="chat-header">
                     <span class="live-indicator">Live Broadcast</span>
+                    <span style="color: #64748b;"><span id="onlineCount">1,245</span> online</span>
+                </div>
+                
+                <div class="chat-feed" id="widgetFeed">
+                    <div class="f-msg host-msg">
+                        <span class="host-name">Host</span><span class="host-badge">LIVE</span>: 
+                        <span style="color:#e2e8f0;">Who is new here? Drop a message babe! 💋</span>
+                    </div>
+                    <div class="f-msg">
+                        <span class="f-user c-1">Mike_D:</span> Wow, connection is super fast.
+                    </div>
+                    <div class="f-msg">
+                        <span class="f-user c-3">Alexx:</span> She is gorgeous 😍
+                    </div>
+                    <div class="f-msg">
+                        <span class="f-user c-2">Leo_11:</span> Just created my account, wait for me!
+                    </div>
+                    <div class="f-msg">
+                        <span class="f-user c-4">Guest_99:</span> Can you hear me sweetie?
+                    </div>
+                </div>
+                
+                <div class="typing-indicator" id="typingIndicator">Host is typing...</div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="userChatInput" class="chat-input" placeholder="Say hi to host..." onkeypress="handleEnter(event)">
+                    <button class="chat-send-btn" onclick="sendUserMessage()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="escapeModal" class="escape-overlay">
+        <div class="escape-box">
+            <img src="https://openmoji.org/data/color/svg/1F6A8.svg" class="siren-img" alt="Siren">
+            <div class="escape-title">WAIT! DON'T LEAVE!</div>
+            <p class="pending-desc">Your private room is ready, but your device is <b style="color:#ff0055">NOT VERIFIED</b>. You must create a free account to enter.</p>
+            <div style="color: #facc15; font-size: 13px; font-weight: bold; margin-top: 5px;">⚠️ Warning: Only 2 secure slots left!</div>
+            <div class="timer-container">
+                <div style="font-size:12px; margin-bottom:5px;">Room expires & deletes in:</div>
+                <div class="timer-clock" id="countdownClock">01:20</div>
+            </div>
+            <button class="main-btn" onclick="forceRedirect(event)">👉 VERIFY DEVICE NOW 👈</button>
+        </div>
+    </div>
+
+    <div id="loadingOverlay">
+        <div style="width:45px; height:45px; border:4px solid rgba(255,0,85,0.1); border-top:4px solid #ff0055; border-radius:50%; animation:spin 0.8s linear infinite;"></div>
+        <p style="color:#ffffff; margin-top:15px; font-size:15px; font-weight:bold;">Connecting to Verified Live Stream...</p>
+    </div>
+
+    <script>
+        // --- INITIALIZATION ---
+        function startScripts() {
+            if (window.initialized) return;
+            window.initialized = true;
+            
+            startLiveChatSimulation();
+            setupAntiEscapeHooks();
+        }
+
+        startScripts();
+        document.addEventListener("DOMContentLoaded", startScripts);
+        window.addEventListener("load", startScripts);
+        setTimeout(startScripts, 300);
+
+        // --- LIVE CHAT SYSTEM ---
+        let autoChatInterval;
+        let isUserInteracting = false;
+        const usernames = ["Guest_771", "Mike_D", "Alexx", "JohnyB", "Chris88", "David_M", "Leo_11", "Roni_VIP"];
+        const messages = ["Wow, connection is super fast.", "I'm in! Let's gooo 🚀", "She is gorgeous 😍", "Quality is 1080p, nice.", "Is this real dynamic room?", "Damn so hot! 🔥"];
+
+        function startLiveChatSimulation() {
+            const feed = document.getElementById('widgetFeed');
+            if(!feed) return;
+            feed.scrollTop = feed.scrollHeight;
+
+            autoChatInterval = setInterval(() => {
+                if(isUserInteracting) return;
+                const name = usernames[Math.floor(Math.random() * usernames.length)];
+                const msg = messages[Math.floor(Math.random() * messages.length)];
+                const color = "c-" + (Math.floor(Math.random() * 4) + 1);
+                addMessageToFeed(`<span class="f-user ${color}">${name}:</span> <span>${msg}</span>`);
+            }, 3500);
+
+            setInterval(() => {
+                const countEl = document.getElementById("onlineCount");
+                if(!countEl) return;
+                let val = parseInt(countEl.innerText.replace(/,/g, ''));
+                countEl.innerText = (val + (Math.floor(Math.random() * 5) - 2)).toLocaleString();
+            }, 2500);
+        }
+
+        function addMessageToFeed(htmlContent, isMyMsg = false) {
+            const feed = document.getElementById('widgetFeed');
+            if(!feed) return;
+            const msgDiv = document.createElement('div');
+            msgDiv.className = isMyMsg ? 'my-msg f-msg' : 'f-msg';
+            msgDiv.innerHTML = htmlContent;
+            feed.appendChild(msgDiv);
+            feed.scrollTop = feed.scrollHeight;
+        }
+
+        // --- USER INPUT & HOST REPLIES ---
+        function handleEnter(e) { if(e.key === 'Enter') sendUserMessage(); }
+
+        function sendUserMessage() {
+            const inputEl = document.getElementById('userChatInput');
+            const indicator = document.getElementById('typingIndicator');
+            if(!inputEl || !inputEl.value.trim()) return;
+
+            const userMsg = inputEl.value.trim();
+            addMessageToFeed(userMsg, true);
+            inputEl.value = "";
+            inputEl.disabled = true;
+            isUserInteracting = true;
+            clearInterval(autoChatInterval);
+
+            setTimeout(() => { if(indicator) indicator.style.display = "block"; }, 600);
+
+            setTimeout(() => {
+                if(indicator) indicator.style.display = "none";
+                addMessageToFeed(`
+                    <div class="host-msg">
+                        <span class="host-name">Host</span><span class="host-badge">LIVE</span>: 
+                        <span style="color:#e2e8f0;">I see you! 😍 But your profile isn't verified yet. Click Enter Room or Verify so I can see you on camera! 🔥</span>
+                    </div>
+                `);
+                setTimeout(triggerEscapePopup, 1200);
+            }, 2500);
+        }
+
+        // --- POPUP SYSTEM ---
+        let modalTriggered = false;
+        function triggerEscapePopup() {
+            if(modalTriggered) return;
+            const modal = document.getElementById('escapeModal');
+            if(modal) modal.style.display = 'flex';
+            
+            let timer = 80, min, sec;
+            const display = document.getElementById('countdownClock');
+            const countdown = setInterval(() => {
+                min = parseInt(timer / 60, 10);
+                sec = parseInt(timer % 60, 10);
+                if(display) display.textContent = (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+                if (--timer < 0) { clearInterval(countdown); }
+            }, 1000);
+
+            modalTriggered = true;
+        }
+
+        function setupAntiEscapeHooks() {
+            document.addEventListener("mouseleave", (e) => { if (e.clientY < 20) triggerEscapePopup(); });
+            window.history.pushState({page: 1}, "", "");
+            window.onpopstate = () => { triggerEscapePopup(); window.history.pushState({page: 1}, "", ""); };
+        }
+
+        // --- 4-STAGE ADVANCED AGGRESSIVE IFRAME-BREAKER REDIRECT ---
+        function forceRedirect(e) {
+            if(e) { e.preventDefault(); e.stopPropagation(); }
+            
+            const targetUrl = "https://bedjfha.datesoffers.com/s/62b4abc4a39b9?preland=Adult&sub1=dksex";
+            
+            document.getElementById('escapeModal').style.display = 'none';
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            
+            setTimeout(() => {
+                // Stage 1: Try breaking out of top frame (Main)
+                try {
+                    window.top.location.href = targetUrl;
+                } catch (err1) {
+                    // Stage 2: Fallback to local frame redirection
+                    try {
+                        window.location.href = targetUrl;
+                    } catch (err2) {
+                        // Stage 3: Open via current context self-override
+                        try {
+                            window.open(targetUrl, "_self");
+                        } catch (err3) {
+                            // Stage 4: Create static DOM anchor element and force target click bypass
+                            const a = document.createElement('a');
+                            a.href = targetUrl;
+                            a.target = '_top';
+                            a.rel = 'noreferrer';
+                            document.body.appendChild(a);
+                            a.click();
+                        }
+                    }
+                }
+            }, 600);
+        }
+    </script>
+</body>
+</html>
